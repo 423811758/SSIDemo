@@ -24,6 +24,39 @@ public class LoginAction extends ActionSupport {
 	private PersonService personService;
 	private String username;
 	private String password;
+	private List<Person> persons;
+
+	public String execute() throws Exception {
+		if (userService.login(username, password)) {
+			ActionContext.getContext().getSession().put("user", getUsername());
+			Person person = new Person();
+			person.setAge(25);
+			person.setName("aaaaa");
+			person.setSex("男");
+			int id = personService.insertPerson(person);
+			person.setId(id);
+			person.setAge(30);
+			person.setName(person.getName() + id);
+			personService.updatePerson(person);
+			persons = personService.getAll();
+			System.out.println("size: " + persons.size());
+//			personService.deletePersonById(persons.get(0).getId());
+			System.out.println("id: "
+					+ personService.useReusltMap(id).getName() + "; id: "
+					+ personService.findById(person).getName());
+			return SUCCESS;
+		} else {
+			return ERROR;
+		}
+	}
+
+	public List<Person> getPersons() {
+		return persons;
+	}
+
+	public void setPersons(List<Person> persons) {
+		this.persons = persons;
+	}
 
 	public String getUsername() {
 		return username;
@@ -41,26 +74,4 @@ public class LoginAction extends ActionSupport {
 		this.password = password;
 	}
 
-	public String execute() throws Exception {
-		if (userService.login(username, password)) {
-			ActionContext.getContext().getSession().put("user", getUsername());
-			Person person = new Person();
-			person.setAge(25);
-			person.setName("aaaaa");
-			person.setSex("男");
-			int id = personService.insertPerson(person);
-			person.setId(id);
-			person.setAge(30);
-			person.setName(person.getName() + id);
-			personService.updatePerson(person);
-			List<Person> personList = personService.getAll();
-			System.out.println("size: " + personList.size());
-			personService.deletePersonById(personList.get(0).getId());
-			System.out.println("id: " + personService.useReusltMap(id).getName()
-					+ "; id: " + personService.findById(person).getName());
-			return SUCCESS;
-		} else {
-			return ERROR;
-		}
-	}
 }

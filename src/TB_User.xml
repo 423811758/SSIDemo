@@ -22,7 +22,7 @@
 		match the properties of the target result class. -->
 	<select id="findByNameAndPassword" parameterClass="Map"
 		resultClass="User">
-		select * from Person where name= #name# and #password#
+		select * from User where name= #name# and #password#
 	</select>
 
 

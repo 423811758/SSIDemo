@@ -15,18 +15,18 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean login(String name, String password) {
-		// User user = userDao.login(name, password);
-		// if (user != null) {
-		// return true;
-		// } else {
-		// return false;
-		// }
-
-		if ("wzd".equals(name) && "123456".equals(password)) {
+		User user = userDao.login(name, password);
+		if (user != null) {
 			return true;
 		} else {
 			return false;
 		}
+
+//		if ("wzd".equals(name) && "123456".equals(password)) {
+//			return true;
+//		} else {
+//			return false;
+//		}
 	}
 
 }

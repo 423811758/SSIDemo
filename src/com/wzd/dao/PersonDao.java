@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.wzd.model.Person;
 
-@Service
 public interface PersonDao {
 
 	Person getPersonById(int id);
