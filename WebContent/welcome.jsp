@@ -7,8 +7,23 @@
 <head>
 <title><s:text name="succPage" /></title>
 <meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<script type='text/javascript' src="./js/tingyun-rum.js"></script>
+<script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#addHtml").click(function(){
+			$.get("${ctx}/list.action", function(data, status){
+				alert("data: "+data);
+			});
+		});
+	});
+	
+</script>
 </head>
 <body>
+	<button type="button" id="addHtml">增加</button>
+	<p></p>
+	<br>
 	<s:text name="succTip">
 		<s:param>${sessionScope.user}</s:param>
 	</s:text>

@@ -10,5 +10,9 @@
 			<result name="error">/error.jsp</result>
 			<result name="success">/welcome.jsp</result>
 		</action>
+		<action name="list" class="com.wzd.action.PersonAction" method="list">
+			<result name="success">/welcome.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
 	</package>
 </struts>

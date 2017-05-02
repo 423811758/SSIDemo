@@ -24,6 +24,12 @@ public class PersonAction extends ActionSupport {
 		return SUCCESS;
 	}
 
+	public List<Person> list() {
+		persons = personService.getAll();
+		System.out.println("persons: " + persons.toString());
+		return persons;
+	}
+
 	public int getId() {
 		return id;
 	}
